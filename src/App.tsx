@@ -1,8 +1,6 @@
-import { useState,useContext,useEffect } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState,useEffect } from 'react'
 import jacobPic from './assets/jacob_pic.jpg'
-import viteLogo from '/vite.svg'
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { Fade } from "react-awesome-reveal";
 import axios from 'axios';
 
@@ -11,9 +9,7 @@ import axios from 'axios';
 
 import './App.css'
 
-function Card({content , title, itemId }:any) {
-  const visibility = useContext(VisibilityContext);
-  const visible = visibility.useIsVisible(itemId, true);
+function Card({content , title}:any) {
   //removed publicApiKey
 
   return<><div>
@@ -32,6 +28,7 @@ function Card({content , title, itemId }:any) {
 function App() {
   const projects = [{itemId: 1,content:"text",title:"title"},{itemId: 2,content:"text",title:"title"},{itemId: 3,content:"text",title:"title"},{itemId: 4,content:"text",title:"title"},{itemId: 5,content:"text",title:"title"}]
   const [currProjects,setCurrProjects] = useState([])
+  console.log(currProjects)
   useEffect(()=>{
     axios.get("https://api.github.com/users/jwaldor/repos").then(response => {
       console.log(response.data)
