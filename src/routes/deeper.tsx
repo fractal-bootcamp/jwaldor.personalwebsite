@@ -35,18 +35,34 @@ function App() {
   ];
   const [currProjects, setCurrProjects] = useState([]);
   console.log(currProjects);
+  const [lines, setLines] = useState<string[]>([]);
+
   useEffect(() => {
-    axios.get("https://api.github.com/users/jwaldor/repos").then((response) => {
-      console.log(response.data);
-      setCurrProjects(
-        response.data
-          .map((proj: object) => {
-            url: Object.values(proj)[0].homepage;
-          })
-          .filter((url: string) => url.length !== 0)
-      );
-    });
+    // Fetch the text file content
+    fetch("https://api.github.com/gists/610572f5715f2b78618f774a274bb8d4")
+      .then((response) => response.json()) // Read as plain text
+      .then((object) => {
+        // Split the content by newline characters to create an array of lines
+        console.log(object["files"]["projects.txt"]["content"].split(/\r?\n/));
+        setLines(object["files"]["projects.txt"]["content"].split(/\r?\n/));
+      })
+      // .then((text) => {
+      //   // Split the content by newline characters to create an array of lines
+      //   const linesArray = text.split(/\r?\n/);
+      //   setLines(linesArray);
+      // })
+      .catch((error) => console.error("Error loading the text file:", error));
   }, []);
+  // useEffect(() => {
+  //   axios.get("https://api.github.com/users/jwaldor/repos").then((response) => {
+  //     console.log(response.data);
+  //     setCurrProjects(
+  //       response.data.map((proj: object) => proj.homepage)
+  //       // .filter((url: string) => url.length !== 0)
+  //     );
+  //   });
+  // }, []);
+  console.log(currProjects);
   // https://api.github.com/users/jwaldor/repos
   return (
     <>
@@ -65,7 +81,7 @@ function App() {
         />
       </div>
 
-      <h1>Witness the unfolding of Jacob</h1>
+      <h1>Discover Jacob!</h1>
       <div>
         Hey there! My name is Jacob Waldor. I'm developing skills to be a
         full-stack software engineer at Fractal Bootcamp. Previously, I worked
@@ -125,13 +141,19 @@ function App() {
       <h1>Projects</h1>
       {/* </Fade> */}
       <ScrollMenu>
-        {projects.map(({ itemId, content, title }) => (
-          <Card
-            itemId={itemId} // NOTE: itemId is required for track items
-            title={title}
-            key={itemId}
-            content={content}
-          />
+        {lines.map((url) => (
+          <div>
+            <div style={{ resize: "both" }}>
+              <a href={url}>{url}</a>
+            </div>
+            <iframe src={url} frameborder="0"></iframe>
+          </div>
+
+          // <div className="">
+          //   <div className="">
+
+          //   </div>
+          // </div>
         ))}
       </ScrollMenu>
       <h2>Connect</h2>
