@@ -36,7 +36,7 @@ function Welcome() {
         lettersshown.current = lettersshown.current + 1;
         setValue(Date.now());
       }
-    }, 200);
+    }, 100);
   }, []);
 
   // https://api.github.com/users/jwaldor/repos
