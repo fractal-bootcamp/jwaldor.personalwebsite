@@ -27,7 +27,7 @@ function Welcome() {
     console.log("derender effect");
     if (derender) {
       const exitAnimation = async () => {
-        await animate(scope.current, { scale: 3 }, { duration: 1 });
+        await animate(scope.current, { scale: 6 }, { duration: 1 });
         console.log("done");
         // await animate("li", { opacity: 1, x: 0 });
         navigate("/deeper");
@@ -61,31 +61,38 @@ function Welcome() {
 
   return (
     <>
-      <div className="bg-blue-500 text-sm" ref={scope}>
-        <AnimateText
-          forceupdate={value}
-          text={message}
-          shown={lettersshown.current}
-        />
-        <button
-          onClick={() => {
-            makeDeRender(true);
+      <motion.div
+        className="flex flex-col text-sm place-items-center gap-2"
+        ref={scope}
+      >
+        <div className="text-center w-fit">
+          <AnimateText
+            forceupdate={value}
+            text={message}
+            shown={lettersshown.current}
+          />
+        </div>
+        <div className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg">
+          <button
+            onClick={() => {
+              makeDeRender(true);
 
-            // controls
-            //   .start({
-            //     scale: 1.7,
-            //     y: -70,
-            //     transition: { ease: "linear", duration: 0 },
-            //   })
-            //   .then((res) => {
-            //     console.log("navigating");
-            //     navigate("/deeper");
-            //   });
-          }}
-        >
-          Dive in!
-        </button>
-      </div>
+              // controls
+              //   .start({
+              //     scale: 1.7,
+              //     y: -70,
+              //     transition: { ease: "linear", duration: 0 },
+              //   })
+              //   .then((res) => {
+              //     console.log("navigating");
+              //     navigate("/deeper");
+              //   });
+            }}
+          >
+            Dive in!
+          </button>
+        </div>
+      </motion.div>
     </>
   );
 }

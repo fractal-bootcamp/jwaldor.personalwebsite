@@ -18,7 +18,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className="flex flex-col min-h-screen justify-center bg-gradient-to-b from-[#4d77d894] to-[#0938b9]">
+      <RouterProvider router={router} />
+    </div>
     {/* <App /> */}
   </React.StrictMode>
 );
