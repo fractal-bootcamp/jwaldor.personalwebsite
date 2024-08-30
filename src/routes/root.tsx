@@ -4,6 +4,7 @@ import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import { Fade } from "react-awesome-reveal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { motion, useAnimationControls, useAnimate } from "framer-motion";
 
 // import "./App.css";
 function AnimateText({ text, shown }: { text: string; shown: number }) {
@@ -19,6 +20,22 @@ function Welcome() {
   const lettersshown = useRef(0);
   const [value, setValue] = useState("");
   const message = "You've arrived at Jacob's website.";
+  const [scope, animate] = useAnimate();
+  const [derender, makeDeRender] = useState(false);
+
+  useEffect(() => {
+    console.log("derender effect");
+    if (derender) {
+      const exitAnimation = async () => {
+        await animate(scope.current, { scale: 3 }, { duration: 1 });
+        console.log("done");
+        // await animate("li", { opacity: 1, x: 0 });
+        navigate("/deeper");
+      };
+      exitAnimation();
+    }
+  }, [derender]);
+
   //   const useSetInterval = (cb: Function, time: number) => {
   //     const cbRef = useRef<Function>(() => {});
   //     useEffect(() => {
@@ -40,16 +57,34 @@ function Welcome() {
   }, []);
 
   // https://api.github.com/users/jwaldor/repos
+  const controls = useAnimationControls();
+
   return (
     <>
-      <div className="bg-blue-500">
+      <div className="bg-blue-500 text-sm" ref={scope}>
         <AnimateText
           forceupdate={value}
           text={message}
           shown={lettersshown.current}
         />
-        <button onClick={() => navigate("/deeper")}>Dive in!</button>
-        <a href={`/deeper`}>Your Name</a>
+        <button
+          onClick={() => {
+            makeDeRender(true);
+
+            // controls
+            //   .start({
+            //     scale: 1.7,
+            //     y: -70,
+            //     transition: { ease: "linear", duration: 0 },
+            //   })
+            //   .then((res) => {
+            //     console.log("navigating");
+            //     navigate("/deeper");
+            //   });
+          }}
+        >
+          Dive in!
+        </button>
       </div>
     </>
   );
