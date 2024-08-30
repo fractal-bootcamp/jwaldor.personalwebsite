@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { motion, useAnimationControls, useAnimate } from "framer-motion";
 
 // import "./App.css";
-function AnimateText({ text, shown }: { text: string; shown: number }) {
+function AnimateText({
+  forceupdate,
+  text,
+  shown,
+}: {
+  forceupdate: number | undefined;
+  text: string;
+  shown: number;
+}) {
   console.log(shown);
   return text
     .split("")
@@ -18,7 +26,7 @@ function AnimateText({ text, shown }: { text: string; shown: number }) {
 function Welcome() {
   const navigate = useNavigate();
   const lettersshown = useRef(0);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<number>();
   const message = "You've arrived at Jacob's website.";
   const [scope, animate] = useAnimate();
   const [derender, makeDeRender] = useState(false);
@@ -72,26 +80,27 @@ function Welcome() {
             shown={lettersshown.current}
           />
         </div>
-        <div className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg">
-          <button
-            onClick={() => {
-              makeDeRender(true);
+        {/* <div > */}
+        <button
+          className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg"
+          onClick={() => {
+            makeDeRender(true);
 
-              // controls
-              //   .start({
-              //     scale: 1.7,
-              //     y: -70,
-              //     transition: { ease: "linear", duration: 0 },
-              //   })
-              //   .then((res) => {
-              //     console.log("navigating");
-              //     navigate("/deeper");
-              //   });
-            }}
-          >
-            Dive in!
-          </button>
-        </div>
+            // controls
+            //   .start({
+            //     scale: 1.7,
+            //     y: -70,
+            //     transition: { ease: "linear", duration: 0 },
+            //   })
+            //   .then((res) => {
+            //     console.log("navigating");
+            //     navigate("/deeper");
+            //   });
+          }}
+        >
+          Dive in!
+        </button>
+        {/* </div> */}
       </motion.div>
     </>
   );
