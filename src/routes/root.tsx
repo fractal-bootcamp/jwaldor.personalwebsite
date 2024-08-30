@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { motion, useAnimationControls, useAnimate } from "framer-motion";
 
 // import "./App.css";
-function AnimateText({ text, shown }: { text: string; shown: number }) {
+function AnimateText({
+  forceupdate,
+  text,
+  shown,
+}: {
+  forceupdate: number | undefined;
+  text: string;
+  shown: number;
+}) {
   console.log(shown);
   return text
     .split("")
@@ -18,7 +26,7 @@ function AnimateText({ text, shown }: { text: string; shown: number }) {
 function Welcome() {
   const navigate = useNavigate();
   const lettersshown = useRef(0);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<number>();
   const message = "You've arrived at Jacob's website.";
   const [scope, animate] = useAnimate();
   const [derender, makeDeRender] = useState(false);
@@ -27,7 +35,7 @@ function Welcome() {
     console.log("derender effect");
     if (derender) {
       const exitAnimation = async () => {
-        await animate(scope.current, { scale: 3 }, { duration: 1 });
+        await animate(scope.current, { scale: 6 }, { duration: 1 });
         console.log("done");
         // await animate("li", { opacity: 1, x: 0 });
         navigate("/deeper");
@@ -61,13 +69,20 @@ function Welcome() {
 
   return (
     <>
-      <div className="bg-blue-500 text-sm" ref={scope}>
-        <AnimateText
-          forceupdate={value}
-          text={message}
-          shown={lettersshown.current}
-        />
+      <motion.div
+        className="flex flex-col text-sm place-items-center gap-2"
+        ref={scope}
+      >
+        <div className="text-center w-fit">
+          <AnimateText
+            forceupdate={value}
+            text={message}
+            shown={lettersshown.current}
+          />
+        </div>
+        {/* <div > */}
         <button
+          className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg"
           onClick={() => {
             makeDeRender(true);
 
@@ -85,7 +100,8 @@ function Welcome() {
         >
           Dive in!
         </button>
-      </div>
+        {/* </div> */}
+      </motion.div>
     </>
   );
 }

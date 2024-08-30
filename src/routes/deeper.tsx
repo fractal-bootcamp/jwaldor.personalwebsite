@@ -140,22 +140,26 @@ function App() {
       </div>
       <h1>Projects</h1>
       {/* </Fade> */}
-      <ScrollMenu>
-        {lines.map((url) => (
-          <div>
-            <div style={{ resize: "both" }}>
-              <a href={url}>{url}</a>
+      <div className="flex flex-col place-items-center">
+        <div className="carousel rounded-box">
+          {lines.map((url) => (
+            <div className="carousel-item">
+              <div className="flex flex-row">
+                <div className="btn bg-black h-fit p-3 rounded-xl">
+                  <a
+                    href={url}
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-yellow-500 font-bold hover:underline mr-1 "
+                  >
+                    Visit site
+                  </a>
+                </div>
+                <div style={{ resize: "both" }}></div>
+                <iframe className="h-96 mr-2 mt-10" src={url}></iframe>
+              </div>{" "}
             </div>
-            <iframe src={url} frameborder="0"></iframe>
-          </div>
-
-          // <div className="">
-          //   <div className="">
-
-          //   </div>
-          // </div>
-        ))}
-      </ScrollMenu>
+          ))}
+        </div>
+      </div>
       <h2>Connect</h2>
     </>
   );
