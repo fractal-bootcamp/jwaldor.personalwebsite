@@ -67,95 +67,53 @@ function App() {
   return (
     <>
       {/* <Fade duration = {1000} damping = {0}> */}
-      <h1>Jacob Waldor</h1>
-      <a href="https://github.com/jwaldor">GitHub</a>
+      <div className="flex flex-col items-center text-center">
+        <h1 className="text-4xl font-bold mb-4">Jacob Waldor</h1>
+        <div className="space-x-4">
+          <a href="https://github.com/jwaldor" className="text-blue-900 hover:text-blue-700 transition duration-300">GitHub</a>
+          <a href="https://www.linkedin.com/in/jacob-waldor/" className="text-blue-900 hover:text-blue-700 transition duration-300">LinkedIn</a>
+        </div>
+      </div>
       <br></br>
-
-      <a href="https://www.linkedin.com/in/jacob-waldor/">LinkedIn</a>
-      <br></br>
-      <div>
+      <div className="flex flex-col place-items-center">
         <img
+          className="shadow-xl mb-2"
           src={jacobPic}
-          style={{ height: "24em", padding: "1.5em" }}
+          style={{ height: "12em",  }}
           alt="Picture"
         />
       </div>
 
-      <h1>Discover Jacob!</h1>
-      <div>
+      <h1></h1>
+      <div className="text-slate-800"> 
         Hey there! My name is Jacob Waldor. I'm developing skills to be a
         full-stack software engineer at Fractal Bootcamp. Previously, I worked
         at two tech companies in data science and machine learning roles, both
         crafting prompts for LLM's and developing machine learning models.
-        Before that, I studied mathematics at Pomona College. A fun fact about
-        me is that I almost became a Buddhist monk. The first reason I code is
+        Before that, I studied mathematics at Pomona College. The first reason I code is
         that I love coding, the second reason is that I love learning, and the
-        third is that I want to build technologies thta ignite humanity's full
+        third is that I want to build technologies that ignite humanity's full
         potential.
-        <br></br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
-        odio vitae vestibulum. Sed efficitur eros eu magna efficitur, nec
-        laoreet risus gravida. Nullam ac lorem id elit pretium varius non sit
-        amet augue. Curabitur et purus a turpis cursus vulputate. Duis tempor,
-        justo in sollicitudin gravida, tortor ex dictum est, id ultrices lorem
-        sapien ut eros. Suspendisse potenti. Pellentesque habitant morbi
-        tristique senectus et netus et malesuada fames ac turpis egestas. Sed
-        accumsan eros ut nisl ullamcorper, nec blandit odio vehicula. Aenean
-        sagittis orci at lectus vestibulum, et scelerisque metus dapibus. Mauris
-        interdum, sapien at pretium suscipit, justo ipsum elementum magna, nec
-        hendrerit dui felis sit amet purus. Cras id efficitur odio, non faucibus
-        odio. Morbi ultricies, justo sed varius auctor, metus est fringilla
-        orci, id vestibulum mauris felis id ante. Quisque tempor mi in lectus
-        maximus, et iaculis ligula euismod. Integer auctor orci ut nisi laoreet,
-        et lacinia quam suscipit. Nulla facilisi. Sed sagittis tortor et tortor
-        interdum, non ultricies risus cursus. Sed ultricies viverra risus, id
-        interdum ex varius at. Nam lacinia augue a orci vehicula, et
-        pellentesque elit condimentum. Duis iaculis ut eros sed feugiat. Donec
-        scelerisque lectus vel lectus auctor, ac egestas justo ornare. Aliquam
-        erat volutpat. Sed a nisi auctor, vulputate dolor eget, vehicula metus.
-        Aenean sit amet nunc vitae dolor fermentum auctor. Nulla facilisi. In
-        tincidunt sapien non arcu convallis, in sodales lorem varius. Mauris
-        egestas nec odio vel tincidunt. Nam et dui velit. Phasellus vestibulum
-        velit eu mauris vestibulum, a luctus sem facilisis. Vestibulum ut quam
-        justo. Integer varius massa eu libero consectetur, ac vehicula orci
-        ullamcorper. Nunc at tortor id purus facilisis suscipit. Cras lobortis,
-        odio ut cursus gravida, urna lorem consequat urna, vel cursus lectus
-        sapien at felis. Donec convallis augue sed efficitur cursus. In
-        condimentum leo vitae gravida euismod. Suspendisse potenti. Fusce
-        condimentum ante ut lectus consequat, non volutpat elit varius.
-        Curabitur convallis nisl nec velit sollicitudin, ac auctor nisl aliquet.
-        Ut ultricies, risus a condimentum facilisis, nisl velit ultricies lacus,
-        vel aliquam sapien orci eget eros. Vivamus tempor, mauris non volutpat
-        pretium, odio libero vehicula nisl, eu tristique lorem nunc vitae
-        ligula. Cras fermentum eros ut libero dictum, eget dapibus tortor
-        sagittis. Duis vel dolor sit amet ipsum rutrum venenatis. Vestibulum
-        eget orci convallis, vulputate sem eu, convallis dolor. Integer sit amet
-        dui id dolor commodo auctor. Pellentesque at velit ac eros viverra
-        viverra et a sapien. Maecenas vel nunc id nisl cursus convallis. Integer
-        aliquam nisi at ex fermentum, eget rhoncus nisl feugiat. Nullam id urna
-        nec lectus fermentum malesuada. Praesent ac gravida libero. Sed
-        vestibulum viverra ex vel scelerisque. Phasellus in massa auctor, cursus
-        nulla in, pellentesque lacus. Ut non consectetur erat. Integer vitae
-        augue velit. Mauris accumsan malesuada velit, non viverra libero.
       </div>
-      <h1>Projects</h1>
+      <br></br>
+      <div className="mb-2 italic">Projects</div>
       {/* </Fade> */}
       <div className="flex flex-col place-items-center">
         <div className="carousel rounded-box">
           {lines.map((url) => (
             <div className="carousel-item">
-              <div className="flex flex-row">
-                <div className="btn bg-black h-fit p-3 rounded-xl">
+              <div className="flex flex-col">
+                <div className="btn bg-black h-fit p-3 rounded-xl mb-2 w-32">
                   <a
                     href={url}
-                    className="text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-yellow-500 font-bold hover:underline mr-1 "
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-yellow-500 font-bold hover:underline mr-1"
                   >
                     Visit site
                   </a>
                 </div>
                 <div style={{ resize: "both" }}></div>
-                <iframe className="h-96 mr-2 mt-10" src={url}></iframe>
-              </div>{" "}
+                <iframe className="h-96 w-full" src={url}></iframe>
+              </div>
             </div>
           ))}
         </div>

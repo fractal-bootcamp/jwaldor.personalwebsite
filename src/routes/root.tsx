@@ -73,7 +73,7 @@ function Welcome() {
         className="flex flex-col text-sm place-items-center gap-2"
         ref={scope}
       >
-        <div className="text-center w-fit">
+        <div className="text-center w-fit text-slate-900">
           <AnimateText
             forceupdate={value}
             text={message}
@@ -82,7 +82,7 @@ function Welcome() {
         </div>
         {/* <div > */}
         <button
-          className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg"
+          className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg text-slate"
           onClick={() => {
             makeDeRender(true);
 
