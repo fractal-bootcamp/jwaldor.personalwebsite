@@ -73,14 +73,16 @@ function App() {
           {lines.map((url) => (
             <div className="carousel-item">
               <div className="flex flex-col">
-                <div className="btn bg-black h-fit p-3 rounded-xl mb-2 w-32">
-                  <a
+              <a
                     href={url}
-                    className="text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-yellow-500 font-bold hover:underline mr-1"
+                    className="btn bg-black h-fit p-3 rounded-xl mb-2 w-32 text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-yellow-500 font-bold hover:underline mr-1"
                   >
+                <div className="">
+                  
                     Visit site
-                  </a>
+                  
                 </div>
+                </a>
                 <div style={{ resize: "both" }}></div>
                 <iframe className="h-96 w-full" src={url}></iframe>
               </div>
