@@ -1,14 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import jacobPic from "../assets/jacob_pic.jpg";
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { Fade } from "react-awesome-reveal";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
-import { motion, useAnimationControls, useAnimate } from "framer-motion";
+import { motion, useAnimate } from "framer-motion";
 
 // import "./App.css";
 function AnimateText({
-  forceupdate,
   text,
   shown,
 }: {
@@ -65,7 +61,6 @@ function Welcome() {
   }, []);
 
   // https://api.github.com/users/jwaldor/repos
-  const controls = useAnimationControls();
 
   return (
     <>
