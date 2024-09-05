@@ -1,40 +1,10 @@
 import { useState, useEffect } from "react";
 import jacobPic from "../assets/jacob_pic.jpg";
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { Fade } from "react-awesome-reveal";
-import axios from "axios";
 
 // import "./App.css";
 
-function Card({ content, title }: any) {
-  //removed publicApiKey
-
-  return (
-    <>
-      <div>
-        <div>{title}</div>
-        <br></br>
-        <div>{content}</div>
-      </div>
-      <div
-        style={{
-          height: "200px",
-        }}
-      />
-    </>
-  );
-}
-
 function App() {
-  const projects = [
-    { itemId: 1, content: "text", title: "title" },
-    { itemId: 2, content: "text", title: "title" },
-    { itemId: 3, content: "text", title: "title" },
-    { itemId: 4, content: "text", title: "title" },
-    { itemId: 5, content: "text", title: "title" },
-  ];
-  const [currProjects, setCurrProjects] = useState([]);
-  console.log(currProjects);
+
   const [lines, setLines] = useState<string[]>([]);
 
   useEffect(() => {
@@ -62,7 +32,7 @@ function App() {
   //     );
   //   });
   // }, []);
-  console.log(currProjects);
+
   // https://api.github.com/users/jwaldor/repos
   return (
     <>
