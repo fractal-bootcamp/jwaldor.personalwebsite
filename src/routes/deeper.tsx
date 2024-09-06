@@ -1,11 +1,26 @@
 import { useState, useEffect } from "react";
 import jacobPic from "../assets/jacob_pic.jpg";
+import { useRef } from "react";
 
 // import "./App.css";
 
 function App() {
 
   const [lines, setLines] = useState<string[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+  if (carouselRef.current) {
+    carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' }); // Adjust scroll amount as needed
+  }
+};
+
+const scrollRight = () => {
+  if (carouselRef.current) {
+    carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' }); // Adjust scroll amount as needed
+  }
+};
+
 
   useEffect(() => {
     // Fetch the text file content
@@ -37,7 +52,7 @@ function App() {
   return (
     <>
       {/* <Fade duration = {1000} damping = {0}> */}
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center mx-8"> {/* Added mx-4 for left and right margins */}
         <h1 className="text-4xl font-bold mb-4">Jacob Waldor</h1>
         <div className="space-x-4">
           <a href="https://github.com/jwaldor" className="text-blue-900 hover:text-blue-700 transition duration-300">GitHub</a>
@@ -45,9 +60,9 @@ function App() {
         </div>
       </div>
       <br></br>
-      <div className="flex flex-col place-items-center">
+      <div className="flex flex-col place-items-center mx-4"> {/* Added mx-4 for left and right margins */}
         <img
-          className="shadow-xl mb-2"
+          className="shadow-md mb-2"
           src={jacobPic}
           style={{ height: "12em",  }}
           alt="Picture"
@@ -55,7 +70,7 @@ function App() {
       </div>
 
       <h1></h1>
-      <div className="text-slate-800"> 
+      <div className="text-slate-800 mx-8 mt-3"> 
         Hey there! My name is Jacob Waldor. I'm developing skills to be a
         full-stack software engineer at Fractal Bootcamp. Previously, I worked
         at two tech companies in data science and machine learning roles, both
@@ -66,12 +81,20 @@ function App() {
         potential.
       </div>
       <br></br>
-      <div className="mb-2 italic">Projects</div>
+      <div>
       {/* </Fade> */}
-      <div className="flex flex-col place-items-center">
-        <div className="carousel rounded-box">
+
+      <div className="flex flex-col justify-center place-items-center">
+
+      <div className="flex flex-row  mx-4">
+      <div className="flex flex-col justify-center place-items-center">
+      <div className="flex flex-row mb-2 italic mx-4 self-start">Projects</div>
+      <div className="flex flex-row">
+      <button className="p-0 bg-transparent border-none rounded-sm text-red-500 text-2xl mx-2" onClick={scrollLeft}>←</button>
+
+        <div className="carousel rounded-box" ref={carouselRef}>
           {lines.map((url) => (
-            <div className="carousel-item">
+            <div className="carousel-item mx-2"> {/* Added mx-2 for horizontal margin */}
               <div className="flex flex-col">
               <a
                     href={url}
@@ -86,13 +109,30 @@ function App() {
                 <div style={{ resize: "both" }}></div>
                 <iframe className="h-96 w-full" src={url}></iframe>
               </div>
+              
             </div>
           ))}
+          
+
+
         </div>
+        <button className="p-0 bg-transparent border-none rounded-sm text-red-500 text-2xl mx-2" onClick={scrollRight}>→</button>
+
+        </div>
+        </div>
+        </div>
+
+{/*         
+        <div className="flex flex-row justify-between w-full">
+        </div> */}
+      </div>
       </div>
       <h2>Connect</h2>
     </>
   );
 }
+
+
+
 
 export default App;
