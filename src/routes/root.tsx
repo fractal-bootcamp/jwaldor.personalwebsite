@@ -31,7 +31,7 @@ function Welcome() {
     console.log("derender effect");
     if (derender) {
       const exitAnimation = async () => {
-        await animate(scope.current, { scale: 6 }, { duration: 1 });
+        await animate(scope.current, { scale: 6 }, { duration: 0.6 });
         console.log("done");
         // await animate("li", { opacity: 1, x: 0 });
         navigate("/deeper");
@@ -77,7 +77,7 @@ function Welcome() {
         </div>
         {/* <div > */}
         <button
-          className="bg-black text-yellow-800 text-center w-fit p-6 border-2 border-b-0 border-emerald-700 rounded-t-lg text-slate"
+          className="bg-black text-yellow-800 text-center w-fit p-6 text-slate"
           onClick={() => {
             makeDeRender(true);
 
@@ -100,5 +100,6 @@ function Welcome() {
     </>
   );
 }
+//border-2 border-b-0 border-emerald-700 rounded-t-lg
 
 export default Welcome;
